@@ -1,0 +1,47 @@
+// ahbv2_stub_interrupt_receiver.mxscr
+
+int irq_in0 = getPortID("p_in0");
+int irq_in1 = getPortID("p_in1");
+int irq_in2 = getPortID("p_in2");
+int irq_in3 = getPortID("p_in3");
+
+while (1)
+{
+  if (getPortData(irq_in0, "DATA") == 1)
+  {
+    message(MX_MSG_INFO, "irq_out0 was asserted.");
+    break;
+  }
+  wait(1);
+}
+
+while(1)
+{
+  if (getPortData(irq_in1, "DATA") == 1)
+  {
+    message(MX_MSG_INFO, "irq_out1 was asserted.");
+    break;
+  }
+  wait(1);
+}
+
+while(1)
+{
+  if (getPortData(irq_in2, "DATA") == 1)
+  {
+    message(MX_MSG_INFO, "irq_out2 was asserted.");
+    break;
+  }
+  wait(1);
+}
+
+while(1)
+{
+  if (getPortData(irq_in3, "DATA") == 1)
+  {
+    message(MX_MSG_INFO, "irq_out3 was asserted.");
+    break;
+  }
+  wait(1);
+}
+

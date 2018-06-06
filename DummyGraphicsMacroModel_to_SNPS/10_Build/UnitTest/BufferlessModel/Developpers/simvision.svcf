@@ -1,0 +1,163 @@
+# SimVision Command Script (月 12月 08 19時55分27秒 JST 2014)
+#
+# Version 10.20.s040
+#
+# You can restore this configuration with:
+#
+#     simvision -input simvision.svcf
+#  or simvision -input simvision.svcf database1 database2 ...
+#
+
+
+#
+# Preferences
+#
+preferences set toolbar-OperatingMode-WaveWindow {
+  usual
+  position -pos 4
+  name OperatingMode
+}
+preferences set plugin-enable-svdatabrowser 0
+preferences set plugin-enable-groupscope 0
+preferences set plugin-enable-interleaveandcompare 0
+
+#
+# Databases
+#
+array set dbNames ""
+set dbNames(realName1) [ database require BufferlessModel -hints {
+	file ./BufferlessModel.trn
+	file /home/swdriven/work/miya/felsite_pf/trunk/10_Build/UnitTest/BufferlessModel/Developpers/BufferlessModel.trn
+}]
+if {$dbNames(realName1) == ""} {
+    set dbNames(realName1) BufferlessModel
+}
+
+#
+# Cursors
+#
+set time 30ns
+if {[catch {cursor new -name  TimeA -time $time}] != ""} {
+    cursor set -using TimeA -time $time
+}
+
+#
+# Mnemonic Maps
+#
+mmap new -reuse -name {Boolean as Logic} -radix %b -contents {
+{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}
+}
+mmap new -reuse -name {Example Map} -radix %x -contents {
+{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}
+}
+
+#
+# Design Browser windows
+#
+if {[catch {window new WatchList -name "Design Browser 1" -geometry 700x500+183+204}] != ""} {
+    window geometry "Design Browser 1" 700x500+183+204
+}
+window target "Design Browser 1" on
+browser using {Design Browser 1}
+browser set -scope [subst  {$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s }]} ]
+browser set \
+    -signalsort name
+browser yview see [subst  {$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s }]} ]
+browser timecontrol set -lock 0
+
+#
+# Waveform windows
+#
+if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1680x988+0+22}] != ""} {
+    window geometry "Waveform 1" 1680x988+0+22
+}
+window target "Waveform 1" on
+waveform using {Waveform 1}
+waveform sidebar visibility partial
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 175 \
+    -units ns \
+    -valuewidth 75
+cursor set -using TimeA -time 30ns
+waveform baseline set -time 0
+
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARADDR}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARBURST}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARID}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARLEN}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARREADY}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARSIZE}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .ARVALID}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RDATA}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RID}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RLAST}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RREADY}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RRESP}]}
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .RVALID}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWADDR}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWBURST}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWID}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWLEN}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWREADY}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWSIZE}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .AWVALID}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WDATA}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WID}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WLAST}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WREADY}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WSTRB}]}
+	} ]]
+waveform format $id -color #0099ff
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {\bufferlessmodel[0]::AXIv2_master<-->axi_slave[0]::axi_s .WVALID}]}
+	} ]]
+waveform format $id -color #0099ff
+
+waveform xview limits 0 4300ns
+
+#
+# Waveform Window Links
+#
+
