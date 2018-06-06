@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<CarbonComponentConfiguration version="22">
+  <Features>
+    <PortExpr></PortExpr>
+    <MemInitEnum></MemInitEnum>
+    <XtorConnExpr></XtorConnExpr>
+    <XtorClockMasters></XtorClockMasters>
+    <NoTicks></NoTicks>
+    <AbstractRegs></AbstractRegs>
+    <EslPortModes></EslPortModes>
+    <Disassembly></Disassembly>
+    <ResetValues></ResetValues>
+    <ESLPortParameter></ESLPortParameter>
+    <XtorDebugAccess></XtorDebugAccess>
+    <XtorFullName></XtorFullName>
+    <XtorTLM2Support></XtorTLM2Support>
+    <EmbeddedModels></EmbeddedModels>
+  </Features>
+  <Platform>ARM</Platform>
+  <Component>axi_slave</Component>
+  <TopModule>axi_slave</TopModule>
+  <Library>../libdesign.a</Library>
+  <LegacyMemories>0</LegacyMemories>
+  <IODB>../libdesign.symtab.db</IODB>
+  <Description></Description>
+  <CxxFlags></CxxFlags>
+  <LinkFlags></LinkFlags>
+  <IncludeFiles></IncludeFiles>
+  <SourceFiles></SourceFiles>
+  <UseStaticScheduling>0</UseStaticScheduling>
+  <LoadFileExtension></LoadFileExtension>
+  <Xtor name="clk" type="Clock_Input">
+    <ClockMaster></ClockMaster>
+    <DebugAccess>1</DebugAccess>
+    <LibraryName>CarbonDefault</LibraryName>
+    <Variant></Variant>
+    <ResetMaster></ResetMaster>
+    <Abstraction></Abstraction>
+    <XtorConnection name="clk" port="enable" expression=""/>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Clock Port Visible</Pname>
+      <Value>true</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Comp Cycles</Pname>
+      <Value>1</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Initial Value</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Initial Delay</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Clock Cycles</Pname>
+      <Value>1</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Delay Enable</Pname>
+      <Value>false</Value>
+    </Parameter>
+    <Parameter>
+      <Name>clk</Name>
+      <Hidden>false</Hidden>
+      <Pname>Duty Cycle</Pname>
+      <Value>50</Value>
+    </Parameter>
+  </Xtor>
+  <Xtor name="axi_s" type="AXI_Flowthru_Slave">
+    <ClockMaster>clk</ClockMaster>
+    <DebugAccess>1</DebugAccess>
+    <LibraryName>CarbonDefault</LibraryName>
+    <Variant></Variant>
+    <ResetMaster></ResetMaster>
+    <Abstraction></Abstraction>
+    <XtorConnection name="axi_s" port="awid" expression=""/>
+    <XtorConnection name="axi_s" port="awlen" expression=""/>
+    <XtorConnection name="axi_s" port="awsize" expression=""/>
+    <XtorConnection name="axi_s" port="awburst" expression=""/>
+    <XtorConnection name="axi_s" port="awlock" expression=""/>
+    <XtorConnection name="axi_s" port="awcache" expression=""/>
+    <XtorConnection name="axi_s" port="awprot" expression=""/>
+    <XtorConnection name="axi_s" port="awuser" expression=""/>
+    <XtorConnection name="axi_s" port="awvalid" expression=""/>
+    <XtorConnection name="axi_s" port="wid" expression=""/>
+    <XtorConnection name="axi_s" port="wlast" expression=""/>
+    <XtorConnection name="axi_s" port="wuser" expression=""/>
+    <XtorConnection name="axi_s" port="bid" expression=""/>
+    <XtorConnection name="axi_s" port="bresp" expression=""/>
+    <XtorConnection name="axi_s" port="buser" expression=""/>
+    <XtorConnection name="axi_s" port="bvalid" expression=""/>
+    <XtorConnection name="axi_s" port="bready" expression=""/>
+    <XtorConnection name="axi_s" port="arid" expression=""/>
+    <XtorConnection name="axi_s" port="arlen" expression=""/>
+    <XtorConnection name="axi_s" port="arsize" expression=""/>
+    <XtorConnection name="axi_s" port="arburst" expression=""/>
+    <XtorConnection name="axi_s" port="arlock" expression=""/>
+    <XtorConnection name="axi_s" port="arcache" expression=""/>
+    <XtorConnection name="axi_s" port="arprot" expression=""/>
+    <XtorConnection name="axi_s" port="aruser" expression=""/>
+    <XtorConnection name="axi_s" port="rid" expression=""/>
+    <XtorConnection name="axi_s" port="rresp" expression=""/>
+    <XtorConnection name="axi_s" port="ruser" expression=""/>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start5</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size1</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size2</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size3</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size4</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size5</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>Enable Debug Messages</Pname>
+      <Value>false</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start0</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start1</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start2</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start3</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_start4</Pname>
+      <Value>0</Value>
+    </Parameter>
+    <Parameter>
+      <Name>axi_s</Name>
+      <Hidden>false</Hidden>
+      <Pname>axi_size0</Pname>
+      <Value>0x10000000</Value>
+    </Parameter>
+  </Xtor>
+  <RtlPort name="axi_slave.clk" width="1" type="input">
+    <XtorConnection name="clk" port="clock" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.rlast_ctrl" width="32" type="input">
+    <TieParameter>
+      <XtorInstance></XtorInstance>
+      <Parameter>rlast_ctrl</Parameter>
+    </TieParameter>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_rready" width="1" type="input">
+    <XtorConnection name="axi_s" port="rready" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_wdata" width="128" type="input">
+    <XtorConnection name="axi_s" port="wdata" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_wvalid" width="1" type="input">
+    <XtorConnection name="axi_s" port="wvalid" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.trigger" width="1" type="input">
+    <TieParameter>
+      <XtorInstance></XtorInstance>
+      <Parameter>wready_out</Parameter>
+    </TieParameter>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_arready" width="1" type="output">
+    <XtorConnection name="axi_s" port="arready" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_awready" width="1" type="output">
+    <XtorConnection name="axi_s" port="awready" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_rdata" width="128" type="output">
+    <XtorConnection name="axi_s" port="rdata" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_rlast" width="1" type="output">
+    <XtorConnection name="axi_s" port="rlast" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_rvalid" width="1" type="output">
+    <XtorConnection name="axi_s" port="rvalid" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_wready" width="1" type="output">
+    <XtorConnection name="axi_s" port="wready" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_araddr" width="32" type="input">
+    <XtorConnection name="axi_s" port="araddr" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_awaddr" width="32" type="input">
+    <XtorConnection name="axi_s" port="awaddr" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_wstrb" width="4" type="input">
+    <XtorConnection name="axi_s" port="wstrb" expression=""/>
+  </RtlPort>
+  <RtlPort name="axi_slave.s1_arvalid" width="1" type="input">
+    <XtorConnection name="axi_s" port="arvalid" expression=""/>
+  </RtlPort>
+  <componentinfo>
+    <component name="axi_slave">
+      <type>Other</type>
+      <version>0.1</version>
+      <docfile></docfile>
+      <loadfileext></loadfileext>
+      <reginfo baseaddr=""/>
+      <meminfo/>
+    </component>
+  </componentinfo>
+  <ParamDef>
+    <parameter name="rlast_ctrl" type="integer" value="16" scope="init-time">
+      <description></description>
+    </parameter>
+    <parameter name="wready_out" type="bool" value="true" scope="run-time">
+      <description></description>
+      <enumChoices>|true|false|</enumChoices>
+    </parameter>
+  </ParamDef>
+</CarbonComponentConfiguration>
