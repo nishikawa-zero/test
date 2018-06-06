@@ -1,8 +1,0 @@
-// axiv2_stub.mxscr
-
-int p_out0 = getPortID("p_out0");
-setPortData(p_out0, "DATA", 1);
-
-wait(20);
-
-drivePort(p_out0);
