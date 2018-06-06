@@ -1,0 +1,64 @@
+// Project.mxscr
+
+string LOG_FILE_NAME = getenv("LOG_FILE_NAME");
+string VCD_FILE_NAME = getenv("VCD_FILE_NAME");
+
+string RESET_GENERATOR_SCRIPT_FILE_NAME    = getenv("RESET_GENERATOR_SCRIPT_FILE_NAME");
+string INTERRUPT_SENDER_SCRIPT_FILE_NAME   = getenv("INTERRUPT_SENDER_SCRIPT_FILE_NAME");
+string INTERRUPT_RECEIVER_SCRIPT_FILE_NAME = getenv("INTERRUPT_RECEIVER_SCRIPT_FILE_NAME");
+
+openSystem("Project.mxp", 0);
+
+setAppFile("reset_generator",    RESET_GENERATOR_SCRIPT_FILE_NAME);
+setAppFile("interrupt_sender",   INTERRUPT_SENDER_SCRIPT_FILE_NAME);
+setAppFile("interrupt_receiver", INTERRUPT_RECEIVER_SCRIPT_FILE_NAME);
+
+initSystem();
+
+CADIMemWrite("axiv2_mem_0", "Memory", 0, 0);
+
+traceSetFile(VCD_FILE_NAME);
+
+int conn_iip_mem_0     = connGetID("iip[0]", "AXIv2_master_0", "axiv2_mem_0",      "axi_s");
+int conn_iip_mem_1     = connGetID("iip[0]", "AXIv2_master_1", "axiv2_mem_1",      "axi_s");
+int conn_iip_mem_2     = connGetID("iip[0]", "AXIv2_master_2", "axiv2_mem_2",      "axi_s");
+int conn_jpeg_mem_0    = connGetID("jpeg[0]", "AXIv2_master_0", "axiv2_mem_3",      "axi_s");
+int conn_jpeg_mem_1    = connGetID("jpeg[0]", "AXIv2_master_1", "axiv2_mem_4",      "axi_s");
+int conn_iip_receiver0 = connGetID("iip[0]", "output0",     "interrupt_receiver", "p_in0");
+int conn_iip_receiver1 = connGetID("iip[0]", "output1",     "interrupt_receiver", "p_in1");
+int conn_iip_receiver2 = connGetID("iip[0]", "output2",     "interrupt_receiver", "p_in2");
+int conn_iip_receiver3 = connGetID("iip[0]", "output3",     "interrupt_receiver", "p_in3");
+int conn_sender_iip0   = connGetID("interrupt_sender", "p_out0",   "iip[0]", "interrupt0");
+int conn_sender_iip1   = connGetID("interrupt_sender", "p_out1",   "iip[0]", "interrupt1");
+int conn_sender_iip2   = connGetID("interrupt_sender", "p_out2",   "iip[0]", "interrupt2");
+int conn_sender_iip3   = connGetID("interrupt_sender", "p_out3",   "iip[0]", "interrupt3");
+int conn_busy_out = connGetID("iip[0]", "busy_out0",     "jpeg[0]", "busy_in0");
+int conn_data_out = connGetID("iip[0]", "data_out0",     "jpeg[0]", "data_in0");
+int conn_busy_in = connGetID("jpeg[0]", "busy_out0", "iip[0]", "busy_in0");
+int conn_data_in = connGetID("jpeg[0]", "data_out0", "iip[0]", "data_in0");
+
+
+traceAddConn(conn_iip_mem_0);
+traceAddConn(conn_iip_mem_1);
+traceAddConn(conn_iip_mem_2);
+traceAddConn(conn_jpeg_mem_0);
+traceAddConn(conn_jpeg_mem_1);
+traceAddConn(conn_iip_receiver0);
+traceAddConn(conn_iip_receiver1);
+traceAddConn(conn_iip_receiver2);
+traceAddConn(conn_iip_receiver3);
+traceAddConn(conn_sender_iip0);
+traceAddConn(conn_sender_iip1);
+traceAddConn(conn_sender_iip2);
+traceAddConn(conn_sender_iip3);
+traceAddConn(conn_busy_out);
+traceAddConn(conn_data_out);
+traceAddConn(conn_busy_in);
+traceAddConn(conn_data_in);
+
+//run();
+step(8000000); // 5000ps*8000000=40ms
+step(8000000); // 5000ps*8000000=40ms
+
+closeSystem();
+
